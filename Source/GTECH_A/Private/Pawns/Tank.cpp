@@ -33,6 +33,17 @@ void ATank::BeginPlay()
 void ATank::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		FHitResult HitResult;
+		PlayerController->GetHitResultUnderCursor(
+			ECC_Visibility,
+			false,
+			HitResult);
+
+		RotateTurret(HitResult.ImpactPoint);
+	}
 }
 
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
