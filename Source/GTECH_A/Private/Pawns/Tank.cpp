@@ -52,13 +52,12 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		if (MovementAction)
+		if (MovementAction && FireAction)
 		{
 			EnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &ATank::Move);
+			EnhancedInputComponent->BindAction(FireAction, ETriggerEvent::Started, this, &ThisClass::Fire);
 		}
-	}
-
-	
+	}	
 }
 
 void ATank::Move(const FInputActionValue& Value)

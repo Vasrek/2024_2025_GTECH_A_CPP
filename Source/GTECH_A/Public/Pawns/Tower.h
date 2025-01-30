@@ -24,4 +24,13 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Canon Properties")
 	float FireRange = 1000.f;
+
+	UPROPERTY(EditAnywhere, Category = "Canon Properties")
+	float FireRate = 2.f;
+
+	FTimerHandle FireRateTimerHandle;
+
+	void CheckFireCondition();
+
+	bool InFireRange();
 };
